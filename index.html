@@ -1,33 +1,47 @@
 <! DOCTYPE html>
 <html>
+<!doctype html> 
+<meta charset="utf-8"> 
+</head> 
 	<body>
 		<h1>Hello World</h1>
 		<p>I’m hosted with GitHub Pages.</p>
 		<p>你好啊 小妞！</p>
 		<p>来米兰倒计时 3天</p>
-		<SPAN id=span_dt_dt></SPAN>  
-		<SCRIPT language=javascript>  
 		
-		 
-		function show_date_time(){  
-		window.setTimeout("show_date_time()", 1000);  
-		BirthDay=new Date("21/02/2018 11:30:00");//这个日期是可以修改的  
-		today=new Date();  
-		timeold=(BirthDay.getTime()-today.getTime());  
-		sectimeold=timeold/1000  
-		secondsold=Math.floor(sectimeold);  
-		msPerDay=24*60*60*1000  
-		e_daysold=timeold/msPerDay  
-		daysold=Math.floor(e_daysold);  
-		e_hrsold=(e_daysold-daysold)*24;  
-		hrsold=Math.floor(e_hrsold);  
-		e_minsold=(e_hrsold-hrsold)*60;  
-		minsold=Math.floor((e_hrsold-hrsold)*60);  
-		seconds=Math.floor((e_minsold-minsold)*60);  
-		span_dt_dt.innerHTML="还有<align=center><p><font color=#A22900><p><font  size=4>"+3+"天"+hrsold+"小时"+0+"分"+0+"秒"+"<br></font><br></font>" ; // 这里你自己改。就是倒计时的样式，字体大小size=4 颜色是color  
-		}  
-		show_date_time();  
+
 		
-		</SCRIPT> 
+		<DIV id="CountMsg" class="HotDate"> 
+			<span id="t_d">00天</span> 
+			<span id="t_h">00时</span> 
+			<span id="t_m">00分</span> 
+			<span id="t_s">00秒</span> 
+		</DIV> 
+		<script type="text/javascript"> 
+			function getRTime(){ 
+				var EndTime= new Date('2018/02/24 10:00:00'); //截止时间 
+				var NowTime = new Date(); 
+				var t =EndTime.getTime() - NowTime.getTime(); 
+				/*var d=Math.floor(t/1000/60/60/24); 
+				t-=d*(1000*60*60*24); 
+				var h=Math.floor(t/1000/60/60); 
+				t-=h*60*60*1000; 
+				var m=Math.floor(t/1000/60); 
+				t-=m*60*1000; 
+				var s=Math.floor(t/1000);*/ 
+ 
+				var d=Math.floor(t/1000/60/60/24); 
+				var h=Math.floor(t/1000/60/60%24); 
+				var m=Math.floor(t/1000/60%60); 
+				var s=Math.floor(t/1000%60); 
+ 
+				document.getElementById("t_d").innerHTML = d + "天"; 
+				document.getElementById("t_h").innerHTML = h + "时"; 
+				document.getElementById("t_m").innerHTML = m + "分"; 
+				document.getElementById("t_s").innerHTML = s + "秒"; 
+			} 
+			setInterval(getRTime,1000); 
+		</script> 	
+
 	</body>
 </html>
